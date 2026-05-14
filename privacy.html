@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy — Several Places Hidden Objects</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            min-height: 100vh;
+            background: #08060e;
+            color: #c9b8a4;
+            line-height: 1.7;
+        }
+
+        .frame {
+            position: fixed;
+            inset: 0;
+            border: 1px solid rgba(212, 168, 83, 0.12);
+            margin: 12px;
+            border-radius: 12px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .vignette {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse 85% 70% at 50% 45%, transparent 0%, rgba(0, 0, 0, 0.55) 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+
+        .masthead {
+            border-bottom: 2px solid rgba(251, 191, 36, 0.35);
+            padding-bottom: 24px;
+            margin-bottom: 32px;
+        }
+
+        .masthead .kicker {
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #a78bfa;
+            margin-bottom: 12px;
+        }
+
+        .masthead h1 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 800;
+            color: #faf6ef;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .masthead .subtitle {
+            font-size: 0.98rem;
+            color: #c4a574;
+            max-width: 40em;
+        }
+
+        article {
+            background: linear-gradient(180deg, rgba(22, 18, 35, 0.55) 0%, rgba(10, 8, 16, 0.4) 100%);
+            border: 1px solid rgba(212, 168, 83, 0.2);
+            border-radius: 4px;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .clause {
+            padding: 22px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .clause:last-of-type {
+            border-bottom: none;
+        }
+
+        .clause header {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .clause .num {
+            font-family: ui-monospace, "SF Mono", Menlo, monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #1a1525;
+            background: linear-gradient(135deg, #fde68a, #d4a853);
+            padding: 4px 10px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .clause h2 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #fde68a;
+        }
+
+        .clause p {
+            font-size: 0.94rem;
+            color: #a89884;
+            padding-left: 0;
+        }
+
+        @media (min-width: 600px) {
+            .clause p {
+                padding-left: 52px;
+            }
+        }
+
+        .notice {
+            margin-top: 28px;
+            padding: 18px 20px;
+            font-size: 0.85rem;
+            color: #8a7d6e;
+            text-align: center;
+            border: 1px dashed rgba(167, 139, 250, 0.25);
+            border-radius: 8px;
+            background: rgba(8, 6, 16, 0.5);
+        }
+
+        nav {
+            text-align: center;
+            margin-top: 36px;
+        }
+
+        nav a {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #d4a853;
+            text-decoration: none;
+            border-bottom: 2px solid rgba(212, 168, 83, 0.4);
+            padding-bottom: 2px;
+        }
+
+        nav a:hover {
+            color: #fde68a;
+            border-color: #fde68a;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="frame" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+
+    <div class="content">
+        <header class="masthead">
+            <p class="kicker">Several Places Hidden Objects</p>
+            <h1>Privacy notice</h1>
+            <p class="subtitle">This notice describes how the Several Places Hidden Objects mobile app handles information when you install it from the Apple App Store. It is written for players and parents, not as a substitute for Apple’s own policies.</p>
+        </header>
+
+        <article>
+            <section class="clause">
+                <header>
+                    <span class="num">01</span>
+                    <h2>Product scope</h2>
+                </header>
+                <p>This document applies only to the Several Places Hidden Objects application distributed through Apple’s storefront. Features, integrations, and disclosures may change between versions; the in-app experience and the App Store product page together reflect what you should expect from the build you have installed.</p>
+            </section>
+
+            <section class="clause">
+                <header>
+                    <span class="num">02</span>
+                    <h2>Information on your device</h2>
+                </header>
+                <p>Gameplay progress, preferences, and similar session data may be stored locally so levels, unlocks, and settings persist between launches. You can remove that data by deleting the app or using the storage and privacy controls built into iOS and iPadOS.</p>
+            </section>
+
+            <section class="clause">
+                <header>
+                    <span class="num">03</span>
+                    <h2>Developer-reported data practices</h2>
+                </header>
+                <p>According to the App Store “App Privacy” label for this title, the developer states that the app does not collect data from you. If Apple’s label is updated after a future release, treat the App Store listing as the current summary of declared collection.</p>
+            </section>
+
+            <section class="clause">
+                <header>
+                    <span class="num">04</span>
+                    <h2>Advertising</h2>
+                </header>
+                <p>The product is listed as containing advertising. Ad delivery and any related measurement are governed by Apple’s platform rules, your device settings (for example, tracking permissions where applicable), and the policies of the ad networks Apple allows in apps. This notice does not describe every third-party SDK; refer to system privacy controls and the store listing for the most up-to-date commercial disclosures.</p>
+            </section>
+
+            <section class="clause">
+                <header>
+                    <span class="num">05</span>
+                    <h2>Apple and Game Center</h2>
+                </header>
+                <p>Downloading, updating, billing, and optional social features such as Game Center leaderboards are processed under Apple’s agreements and privacy documentation for your Apple ID. The game does not replace those terms.</p>
+            </section>
+
+            <section class="clause">
+                <header>
+                    <span class="num">06</span>
+                    <h2>Children and shared devices</h2>
+                </header>
+                <p>The app is rated for a broad audience. Parents and guardians can use Screen Time, Ask to Buy, and other Apple family controls to manage installation, purchases, and privacy options on devices used by minors.</p>
+            </section>
+
+            <section class="clause">
+                <header>
+                    <span class="num">07</span>
+                    <h2>Changes to this notice</h2>
+                </header>
+                <p>If the app’s behavior or platform requirements change in a material way, this page may be revised so it remains a fair plain-language overview. Continued use of the app after an update generally means the revised description applies to the new version.</p>
+            </section>
+
+            <section class="clause">
+                <header>
+                    <span class="num">08</span>
+                    <h2>Regional rights</h2>
+                </header>
+                <p>Nothing in this text limits legal rights you may have under applicable law. Where access, correction, or deletion rights exist, they are often exercised through Apple account tools and on-device controls rather than through the game itself.</p>
+            </section>
+        </article>
+
+        <p class="notice">This page is informational. For authoritative privacy declarations, rely on the App Store “App Privacy” section and Apple’s published policies for your region.</p>
+
+        <nav>
+            <a href="index.html">Back to overview</a>
+        </nav>
+    </div>
+</body>
+
+</html>

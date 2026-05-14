@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Several Places Hidden Objects — Find Objects Across Worlds</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            background:
+                radial-gradient(ellipse 110% 80% at 50% -20%, rgba(212, 168, 83, 0.18) 0%, transparent 55%),
+                radial-gradient(ellipse 50% 40% at 0% 70%, rgba(99, 102, 241, 0.12) 0%, transparent 45%),
+                radial-gradient(ellipse 45% 35% at 100% 25%, rgba(139, 92, 246, 0.1) 0%, transparent 40%),
+                linear-gradient(165deg, #0a0612 0%, #12101f 45%, #08060e 100%);
+            color: #d4c4b0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .scene-grid {
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(212, 168, 83, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(212, 168, 83, 0.04) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 75%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .glow-orb {
+            position: fixed;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.12) 0%, transparent 68%);
+            top: 8%;
+            right: -10%;
+            animation: drift 14s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .glow-orb:nth-child(2) {
+            left: -12%;
+            right: auto;
+            top: 50%;
+            background: radial-gradient(circle, rgba(167, 139, 250, 0.1) 0%, transparent 68%);
+            animation-delay: -5s;
+            animation-duration: 18s;
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(14px, -18px); }
+        }
+
+        .container {
+            max-width: 640px;
+            width: 100%;
+            background: linear-gradient(160deg, rgba(22, 18, 35, 0.96) 0%, rgba(10, 8, 18, 0.98) 100%);
+            border: 1px solid rgba(212, 168, 83, 0.35);
+            border-radius: 24px;
+            padding: 44px 40px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+                0 28px 64px rgba(0, 0, 0, 0.55),
+                0 0 80px rgba(99, 102, 241, 0.08);
+        }
+
+        .icon-wrap {
+            width: 112px;
+            height: 112px;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 24px;
+            background: linear-gradient(145deg, #3d3558 0%, #1e1a2e 55%, #12101c 100%);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5), 0 0 28px rgba(212, 168, 83, 0.2);
+            border: 1px solid rgba(212, 168, 83, 0.25);
+        }
+
+        .icon-wrap svg {
+            width: 72px;
+            height: 72px;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+        }
+
+        h1 {
+            font-size: 1.95rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 8px;
+            color: #faf6ef;
+            line-height: 1.15;
+        }
+
+        h1 span.accent {
+            background: linear-gradient(90deg, #fbbf24, #fde68a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 1.02rem;
+            font-weight: 600;
+            color: #c4a574;
+            margin-bottom: 26px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 26px;
+        }
+
+        .chip {
+            font-size: 0.74rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(99, 102, 241, 0.15);
+            color: #c7d2fe;
+            border: 1px solid rgba(129, 140, 248, 0.35);
+        }
+
+        .chip.gold {
+            background: rgba(212, 168, 83, 0.15);
+            color: #fde68a;
+            border-color: rgba(251, 191, 36, 0.4);
+        }
+
+        .lead {
+            text-align: left;
+            color: #c9b8a4;
+            line-height: 1.75;
+            font-size: 1.04rem;
+            margin-bottom: 26px;
+        }
+
+        .lead strong {
+            color: #faf6ef;
+        }
+
+        .feature-list {
+            text-align: left;
+            margin-bottom: 26px;
+            border-radius: 16px;
+            padding: 22px 22px 18px;
+            background: rgba(8, 6, 16, 0.65);
+            border: 1px solid rgba(212, 168, 83, 0.15);
+        }
+
+        .feature-list h2 {
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #fbbf24;
+            margin-bottom: 14px;
+        }
+
+        .feature-list ul {
+            list-style: none;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding-left: 22px;
+            margin-bottom: 12px;
+            font-size: 0.92rem;
+            color: #a89884;
+            line-height: 1.55;
+        }
+
+        .feature-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.55em;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fbbf24, #a78bfa);
+            box-shadow: 0 0 10px rgba(251, 191, 36, 0.45);
+        }
+
+        .cta {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 16px 36px;
+            font-size: 1.02rem;
+            font-weight: 700;
+            color: #1a1525;
+            text-decoration: none;
+            border-radius: 14px;
+            background: linear-gradient(180deg, #fde68a 0%, #d4a853 100%);
+            box-shadow: 0 8px 24px rgba(212, 168, 83, 0.35);
+            border: 2px solid rgba(255, 250, 235, 0.35);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(251, 191, 36, 0.4);
+        }
+
+        .foot {
+            margin-top: 26px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(212, 168, 83, 0.18);
+            font-size: 0.88rem;
+            color: #8a7d6e;
+        }
+
+        .foot a {
+            color: #d4a853;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .foot a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 560px) {
+            .container {
+                padding: 32px 22px;
+            }
+            h1 {
+                font-size: 1.55rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scene-grid" aria-hidden="true"></div>
+    <div class="glow-orb" aria-hidden="true"></div>
+    <div class="glow-orb" aria-hidden="true"></div>
+
+    <div class="container">
+        <div class="icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="28" cy="28" r="18" fill="none" stroke="url(#g)" stroke-width="3"/>
+                <line x1="40" y1="40" x2="54" y2="54" stroke="#c4a574" stroke-width="4" stroke-linecap="round"/>
+                <ellipse cx="26" cy="26" rx="6" ry="5" fill="rgba(251,191,36,0.25)"/>
+                <defs>
+                    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#fde68a"/>
+                        <stop offset="100%" style="stop-color:#a78bfa"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+
+        <h1>Several Places <span class="accent">Hidden Objects</span></h1>
+        <p class="tagline">Find objects across worlds</p>
+
+        <div class="chips">
+            <span class="chip gold">Free</span>
+            <span class="chip">iOS 15+</span>
+            <span class="chip gold">iPhone &amp; iPad</span>
+            <span class="chip">Puzzle · 4+</span>
+        </div>
+
+        <p class="lead">
+            <strong>Explore multiple locations</strong>, sharpen your observation, and discover hidden items in richly detailed scenes. From cozy indoor rooms to open outdoor vistas, every level is a fresh environment packed with cleverly placed objects—perfect for relaxed play or a sharper, brain-teasing challenge.
+        </p>
+
+        <div class="feature-list">
+            <h2>What you will find in the app</h2>
+            <ul>
+                <li>Multiple unique locations to travel through and replay</li>
+                <li>Hidden-object challenges that reward careful looking</li>
+                <li>A calm, smooth experience built for focus and discovery</li>
+                <li>Hints for those moments when an item stays just out of sight</li>
+                <li>Progressive difficulty as you unlock new exciting places</li>
+                <li>Designed for all ages—take your time and spot them all</li>
+            </ul>
+        </div>
+
+        <a href="https://apps.apple.com/us/app/several-places-hidden-objects/id1036586361?uo=4" class="cta" target="_blank" rel="noopener noreferrer">Download on the App Store</a>
+
+        <div class="foot">
+            <a href="privacy.html">Privacy</a>
+        </div>
+    </div>
+</body>
+
+</html>
